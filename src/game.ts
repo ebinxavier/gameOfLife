@@ -1,6 +1,6 @@
 import { Application, Graphics, Point, Renderer } from "pixi.js";
 
-const dotSize = 100;
+const dotSize = 20;
 const border = 1;
 const frameDelay = 200;
 const dotColor = "white";
