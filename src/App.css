@@ -1,0 +1,21 @@
+/* The value content-box tells the div to place any border on the outside, increasing the width or height. If we change this value to border-box, the border is added to the inside of the box. */
+.button {
+    box-sizing: border-box;
+    width: 0;
+    height: 74px;
+    border-style: solid;
+    border-width: 37px 0 37px 60px;
+    border-color: transparent transparent transparent #f00;
+    cursor: pointer;
+    will-change: border-width;
+    transition: all .2s ease;
+    
+    &.paused {
+      border-style: double;
+      border-width: 0px 0 0px 60px;
+    }
+    
+    &:hover {
+      border-color: transparent transparent transparent #404040;
+    }
+  }
