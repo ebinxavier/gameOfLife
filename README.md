@@ -1,30 +1,60 @@
-# React + TypeScript + Vite
+# Conway's Game of Life
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the Conway's Game of Life simulation built with JavaScript(Pixi.js) and React! This project visualizes the cellular automaton devised by mathematician John Horton Conway. The game is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input.
 
-Currently, two official plugins are available:
+![Game of Life Screenshot](public/ss.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
 
-## Expanding the ESLint configuration
+- [Introduction](#introduction)
+- [Rules](#rules)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Introduction
 
-- Configure the top-level `parserOptions` property like this:
+The Game of Life is a simple yet fascinating example of cellular automata. The game consists of a grid of cells which, based on a few mathematical rules, can live, die, or multiply. The game progresses through discrete time steps, updating the grid based on the states of neighboring cells.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## Rules
+
+The game evolves according to the following rules:
+
+1. **Underpopulation**: Any live cell with fewer than two live neighbors dies.
+2. **Survival**: Any live cell with two or three live neighbors lives on to the next generation.
+3. **Overpopulation**: Any live cell with more than three live neighbors dies.
+4. **Reproduction**: Any dead cell with exactly three live neighbors becomes a live cell.
+
+Thank you for checking out the Conway's Game of Life simulation. Have fun experimenting with different patterns and observing the fascinating outcomes!
+
+### Deploy to Github via gh-pages
+
+1. Install Github Pages npm package
+
+```bash
+  npm install gh-pages --save-dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. Add homepages key to the `package.json`'s root level.
+
+```json
+"homepage": "https://ebinxavier.github.io/gameOfLife",
+```
+
+3. Add the following under `scripts` section of package.json
+
+```json
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+```
+
+4. Update Vite configuration like this
+
+```js
+export default defineConfig({
+  plugins: [react()],
+  build: {
+    outDir: "./build",
+  },
+  base: "/gameOfLife/",
+});
+```
+
+5. run `npm run deploy`, it will deploy the application to github pages.
